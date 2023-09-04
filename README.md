@@ -1,10 +1,10 @@
 # 3D SaaS Website Shirt 🚀
 
--[x] ✨ Advanced AI Features 🤖
+- [x] ✨ Advanced AI Features 🤖
 
--[x] 🌐 Cool 3D Animations 🎮
+- [x] 🌐 Cool 3D Animations 🎮
 
--[x] 🎨 Customizable Designs 🖌️
+- [x] 🎨 Customizable Designs 🖌️
 
 ## 🔥 Full-Stack MERN App 🚀
 
