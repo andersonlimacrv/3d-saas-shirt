@@ -12,13 +12,14 @@ I build this project harnessing the capabilities of the MERN stack. (`MongoDB`, 
 
 ### 🛠️ Tech Details:
 
-- **React**: Utilizing the power of Functional Components and reusability for a smooth user experience.
-- **Three.js**: A library for creating 3D graphics.
+- `React`: Utilizing the power of Functional Components and reusability for a smooth user experience.
+- `Three.js`: A library for creating 3D graphics.
+- `TailwindCSS`: A utility-first CSS framework.
+- `Node.js`: Backend API -> Providing a robust backend for seamless interactions and data handling.
+- `AI Engine`: Utilizing the power of AI to provide a personalized experience.
 - **Optimized Code Architecture**: Our organized file and folder structure ensure better code management and scalability.
 - **Efficient CSS Styling**: We've kept the CSS concise to maintain a sleek design while minimizing code bloat.
 - **Responsive Design**: Whether you're browsing on a desktop, tablet, or smartphone, our site adapts flawlessly.
-- **Node.js Backend API**: Providing a robust backend for seamless interactions and data handling.
-- **AI Engine**: Utilizing the power of AI to provide a personalized experience.
 
 🚀 Let's get started: [Explore Now](https://www.example.com) 🚀
 
