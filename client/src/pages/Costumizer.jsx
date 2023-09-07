@@ -62,6 +62,32 @@ const Costumizer = () => {
 
 		try {
 			//call backend to generate an ai image
+			setGeneratingImg(true);
+
+			const response = await fetch(
+				"http://localhost:8080/api/v1/generateImg",
+				{
+					method: "POST",
+					headers: {
+						"Content-Type":
+							"application/json",
+					},
+					body: JSON.stringify({
+						prompt,
+					}),
+				}
+			);
+
+			const data = await response.json();
+			console.log(
+				"🚀 ~ file: Costumizer.jsx:82 ~ handleSubmit ~ data:",
+				data
+			);
+
+			handleDecals(
+				type,
+				`data: image/png;base64,${data.photo}`
+			);
 		} catch (error) {
 			alert(error);
 		} finally {
