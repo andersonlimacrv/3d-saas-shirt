@@ -26,7 +26,7 @@ router.route('/').post(async (req, res) => {
         const response = await openai.createImage({
             prompt,
             n: 1,
-            size: '1024x1024',
+            size: '256x256',
             response_format: 'b64_json',
         });
 
@@ -34,10 +34,18 @@ router.route('/').post(async (req, res) => {
 
         res.status(200).json({ photo: image });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error });
+        if (error.response) {
+            // If had an error response from the API
+            console.log("Avatar error status: ", error.response.status);
+            console.log("Avatar error data: ", error.response.data);
+            res.status(error.response.status).json({ error: error.response.data });
+        } else {
+            // If had a different error
+            console.error("Avatar error message: ", error.message);
+            res.status(500).json({ error: error.message });
+        }
     }
-})
+});
 
 
 
