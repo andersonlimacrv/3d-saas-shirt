@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSnapshot } from "valtio";
@@ -12,15 +11,16 @@ import { fadeAnimation, slideAnimation } from "../config/motion";
 import {
 	AIPicker,
 	ColorPicker,
+	CustomButton,
 	FilePicker,
 	Tab,
-	CustomButton,
 } from "../components";
 
-const Costumizer = () => {
+const Customizer = () => {
 	const snap = useSnapshot(state);
 
 	const [file, setFile] = useState("");
+
 	const [prompt, setPrompt] = useState("");
 	const [generatingImg, setGeneratingImg] = useState(false);
 
@@ -30,7 +30,7 @@ const Costumizer = () => {
 		stylishShirt: false,
 	});
 
-	//show tab content depending on the activeTab
+	// show tab content depending on the activeTab
 	const generateTabContent = () => {
 		switch (activeEditorTab) {
 			case "colorpicker":
@@ -61,11 +61,10 @@ const Costumizer = () => {
 		if (!prompt) return alert("Please enter a prompt");
 
 		try {
-			//call backend to generate an ai image
 			setGeneratingImg(true);
 
 			const response = await fetch(
-				"http://localhost:8080/api/v1/generateImg",
+				"http://localhost:8080/api/v1/generateImg/",
 				{
 					method: "POST",
 					headers: {
@@ -79,14 +78,10 @@ const Costumizer = () => {
 			);
 
 			const data = await response.json();
-			console.log(
-				"🚀 ~ file: Costumizer.jsx:82 ~ handleSubmit ~ data:",
-				data
-			);
 
 			handleDecals(
 				type,
-				`data: image/png;base64,${data.photo}`
+				`data:image/png;base64,${data.photo}`
 			);
 		} catch (error) {
 			alert(error);
@@ -98,6 +93,7 @@ const Costumizer = () => {
 
 	const handleDecals = (type, result) => {
 		const decalType = DecalTypes[type];
+
 		state[decalType.stateProperty] = result;
 
 		if (!activeFilterTab[decalType.filterTab]) {
@@ -116,9 +112,11 @@ const Costumizer = () => {
 			default:
 				state.isLogoTexture = true;
 				state.isFullTexture = false;
+				break;
 		}
 
-		//after setting the state, activeFilterTab is updated
+		// after setting the state, activeFilterTab is updated
+
 		setActiveFilterTab((prevState) => {
 			return {
 				...prevState,
@@ -133,6 +131,7 @@ const Costumizer = () => {
 			setActiveEditorTab("");
 		});
 	};
+
 	return (
 		<AnimatePresence>
 			{!snap.intro && (
@@ -162,10 +161,12 @@ const Costumizer = () => {
 										/>
 									)
 								)}
+
 								{generateTabContent()}
 							</div>
 						</div>
 					</motion.div>
+
 					<motion.div
 						className="absolute z-10 top-5 right-5"
 						{...fadeAnimation}>
@@ -178,6 +179,7 @@ const Costumizer = () => {
 							customStyles="w-fit px-4 py-2.5 font-bold text-sm"
 						/>
 					</motion.div>
+
 					<motion.div
 						className="filtertabs-container"
 						{...slideAnimation("up")}>
@@ -206,4 +208,4 @@ const Costumizer = () => {
 	);
 };
 
-export default Costumizer;
+export default Customizer;
