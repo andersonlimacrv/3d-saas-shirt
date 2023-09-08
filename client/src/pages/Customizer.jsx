@@ -23,13 +23,25 @@ const Customizer = () => {
 
 	const [prompt, setPrompt] = useState("");
 	const [generatingImg, setGeneratingImg] = useState(false);
-	const [error, setError] = useState(null); // Estado para armazenar erros
+	const [error, setError] = useState(null); // error state
 
 	const [activeEditorTab, setActiveEditorTab] = useState("");
 	const [activeFilterTab, setActiveFilterTab] = useState({
 		logoShirt: true,
 		stylishShirt: false,
 	});
+
+	useEffect(() => {
+		if (error) {
+			// error time showing error message
+			const timer = setTimeout(() => {
+				setError(false);
+			}, 4000);
+
+			// Clears the timer if the component is unmounted before the timeout
+			return () => clearTimeout(timer);
+		}
+	}, [error]);
 
 	// show tab content depending on the activeTab
 	const generateTabContent = () => {
@@ -59,9 +71,11 @@ const Customizer = () => {
 	};
 
 	const handleSubmit = async (type) => {
+		setError(null);
+
 		if (!prompt) {
 			setError("Please enter a prompt");
-			return; // Mostrar erro e sair da função
+			return;
 		}
 
 		try {
@@ -69,7 +83,7 @@ const Customizer = () => {
 			setError(null);
 
 			const response = await fetch(
-				"http://localhost:8080/api/v1/generateImg/aaa",
+				"http://localhost:8080/api/v1/generateImg/",
 				{
 					method: "POST",
 					headers: {
@@ -82,7 +96,16 @@ const Customizer = () => {
 				}
 			);
 			if (!response.ok) {
-				throw new Error("Failed to fetch data");
+				if (response.status === 400) {
+					throw new Error(
+						"Monthly rate limit reached (5$)"
+					);
+				}
+				if (response.status === 404) {
+					throw new Error("API not found");
+				} else {
+					throw new Error("Server is offline");
+				}
 			}
 			const data = await response.json();
 
@@ -91,7 +114,7 @@ const Customizer = () => {
 				`data:image/png;base64,${data.photo}`
 			);
 		} catch (error) {
-			setError(error.message); // Configurar mensagem de erro
+			setError(error.message); // config error message
 		} finally {
 			setGeneratingImg(false);
 			setActiveEditorTab("");
@@ -123,7 +146,6 @@ const Customizer = () => {
 		}
 
 		// after setting the state, activeFilterTab is updated
-
 		setActiveFilterTab((prevState) => {
 			return {
 				...prevState,
@@ -171,7 +193,7 @@ const Customizer = () => {
 
 								{generateTabContent()}
 							</div>
-							{/* Exibição da mensagem de erro */}
+							{/* showing error message */}
 							{error && (
 								<motion.div
 									className="error-message glassmorphism p-4 m-3 mt-[120%] rounded-md font-bold text-red-800"

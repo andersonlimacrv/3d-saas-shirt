@@ -21,11 +21,13 @@ const Home = () => {
 					{...slideAnimation("left")}>
 					<motion.header
 						{...slideAnimation("down")}>
-						<img
-							src="/threejs.png"
-							alt="Threejs Logo"
-							className="w-20 h-20 object-contain"
-						/>
+						<a href="https://github.com/andersonlimacrv/">
+							<img
+								src="/threejs.png"
+								alt="Threejs Logo"
+								className="w-20 h-20 object-contain"
+							/>
+						</a>
 					</motion.header>
 
 					<motion.div
