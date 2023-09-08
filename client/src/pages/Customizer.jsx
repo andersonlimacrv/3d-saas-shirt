@@ -23,6 +23,7 @@ const Customizer = () => {
 
 	const [prompt, setPrompt] = useState("");
 	const [generatingImg, setGeneratingImg] = useState(false);
+	const [error, setError] = useState(null); // Estado para armazenar erros
 
 	const [activeEditorTab, setActiveEditorTab] = useState("");
 	const [activeFilterTab, setActiveFilterTab] = useState({
@@ -58,13 +59,17 @@ const Customizer = () => {
 	};
 
 	const handleSubmit = async (type) => {
-		if (!prompt) return alert("Please enter a prompt");
+		if (!prompt) {
+			setError("Please enter a prompt");
+			return; // Mostrar erro e sair da função
+		}
 
 		try {
 			setGeneratingImg(true);
+			setError(null);
 
 			const response = await fetch(
-				"http://localhost:8080/api/v1/generateImg/",
+				"http://localhost:8080/api/v1/generateImg/aaa",
 				{
 					method: "POST",
 					headers: {
@@ -76,7 +81,9 @@ const Customizer = () => {
 					}),
 				}
 			);
-
+			if (!response.ok) {
+				throw new Error("Failed to fetch data");
+			}
 			const data = await response.json();
 
 			handleDecals(
@@ -84,7 +91,7 @@ const Customizer = () => {
 				`data:image/png;base64,${data.photo}`
 			);
 		} catch (error) {
-			alert(error);
+			setError(error.message); // Configurar mensagem de erro
 		} finally {
 			setGeneratingImg(false);
 			setActiveEditorTab("");
@@ -164,6 +171,18 @@ const Customizer = () => {
 
 								{generateTabContent()}
 							</div>
+							{/* Exibição da mensagem de erro */}
+							{error && (
+								<motion.div
+									className="error-message glassmorphism p-4 m-3 mt-[120%] rounded-md font-bold text-red-800"
+									{...fadeAnimation}>
+									<p>
+										{
+											error
+										}
+									</p>
+								</motion.div>
+							)}
 						</div>
 					</motion.div>
 
