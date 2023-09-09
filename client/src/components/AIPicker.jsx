@@ -29,7 +29,7 @@ const AIPicker = ({ prompt, setPrompt, generatingImg, handleSubmit }) => {
 									"logo"
 								)
 							}
-							customStyles="text-xs"
+							customStyles="text-xs font-bold"
 						/>
 
 						<CustomButton

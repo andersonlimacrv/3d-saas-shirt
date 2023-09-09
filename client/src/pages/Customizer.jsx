@@ -83,7 +83,7 @@ const Customizer = () => {
 			setError(null);
 
 			const response = await fetch(
-				"http://localhost:8080/api/v1/generateImg/",
+				"https://choose-your-tshirt-model.onrender.com/api/v1/generateImg/",
 				{
 					method: "POST",
 					headers: {
