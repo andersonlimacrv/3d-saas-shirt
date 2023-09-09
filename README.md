@@ -1,5 +1,12 @@
 # 3D SaaS Website Shirt 🚀
 
+# 🚀 Visit to test: [https://3d-saas-shirt.vercel.app/](https://3d-saas-shirt.vercel.app/) 🚀
+
+
+### `Description`
+<img src="https://img.shields.io/badge/-D40000.svg?style=plastic&logo=asciinema&logoColor=white"> Project made to consolidate the techniques of using **3D components**, image generation using the power of **Artificial Intelligence** to generate images, in addition to **sober**, **minimalist**, and **intuitive** design and layout.
+
+
 - [x] ✨ Advanced AI Features 🤖
 
 - [x] 🌐 Cool 3D Animations 🎮
@@ -9,6 +16,7 @@
 ## 🔥 Full-Stack MERN App 🚀
 
 I build this project harnessing the capabilities of the MERN stack. (`MongoDB`, `Express.js`, `React`, and `Node.js`).
+Ex
 
 ### 🛠️ Tech Details:
 
@@ -21,7 +29,7 @@ I build this project harnessing the capabilities of the MERN stack. (`MongoDB`, 
 - **Efficient CSS Styling**: We've kept the CSS concise to maintain a sleek design while minimizing code bloat.
 - **Responsive Design**: Whether you're browsing on a desktop, tablet, or smartphone, our site adapts flawlessly.
 
-🚀 Let's get started: [Explore Now](https://www.example.com) 🚀
+🚀 Let's get started: [Explore Now](https://3d-saas-shirt.vercel.app/) 🚀
 
 ### 📚 Libraries:
 
