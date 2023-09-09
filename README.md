@@ -5,7 +5,12 @@
 
 ### `Description`
 <img src="https://img.shields.io/badge/-D40000.svg?style=plastic&logo=asciinema&logoColor=white"> Project made to consolidate the techniques of using **3D components**, image generation using the power of **Artificial Intelligence** to generate images, in addition to **sober**, **minimalist**, and **intuitive** design and layout.
-
+***
+<div align='right'>
+  
+ Deploy →  ` Front-end ` <img src="https://img.shields.io/badge/Vercel-000?&logo=Vercel&"> 
+ ` Back-end `  <img src="https://img.shields.io/badge/Render-000?&logo=Render&logoColor=46E3B7">   
+</div>
 
 - [x] ✨ Advanced AI Features 🤖
 
